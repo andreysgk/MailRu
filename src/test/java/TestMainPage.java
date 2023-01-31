@@ -8,9 +8,16 @@ public class TestMainPage extends BaseKlone{
     }
     @Test
     public void enterButtonnMain(){
-        urlMain();
         mainPage.enterButtonMain();
-        signInAccount.ifrm()
+        signInAccount
+                .ifrm()
                 .enterBUtton();
+    }
+    @Test
+    public void log(){
+        mainPage.enterButtonMain();
+        signInAccount
+                .ifrm()
+                .nameUser("sss");
     }
 }
