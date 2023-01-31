@@ -7,17 +7,16 @@ public class TestMainPage extends BaseKlone{
         driver.get("https://mail.ru/");
     }
     @Test
-    public void enterButtonnMain(){
-        mainPage.enterButtonMain();
-        signInAccount
-                .ifrm()
-                .enterBUtton();
-    }
-    @Test
-    public void log(){
-        mainPage.enterButtonMain();
-        signInAccount
-                .ifrm()
-                .nameUser("sss");
+    public void moveMessageToDraft() throws InterruptedException {
+        mainPageTest.enterButtonMain();
+        loginPageTest
+                .iframeLoginPage()
+                .usernameLoginPage("kiril1batsilev@mail.ru")
+                .signInButtonLoginPage()
+                .passwordLoginPage("karabas22barabas")
+                .signInButtonLoginPage();
+        driver.get("https://e.mail.ru/inbox/");
+        Thread.sleep(5000);
+        incomingMessagesPageTest.moveMessage(0,8);
     }
 }
