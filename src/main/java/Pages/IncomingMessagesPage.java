@@ -13,6 +13,7 @@ public class IncomingMessagesPage extends Base{
     }
     private final By listMessagesLocator = By.xpath("//div[@class='llc__content']");
     private final By listLeftPanelLocator = By.xpath("//div[@class='nav__folder-name nav__folder-name_shared']");
+    private final By draftButtonLocator = By.xpath("//div[text()='Черновики']");
 
     public IncomingMessagesPage moveMessage(int numberMessage, int cellNumberLeftPanel){
         List<WebElement> list = driver.findElements(listMessagesLocator);
@@ -22,6 +23,10 @@ public class IncomingMessagesPage extends Base{
         new Actions(driver)
                 .dragAndDrop(first,second)
                 .perform();
+        return this;
+    }
+    public IncomingMessagesPage clickDraftButton(){
+        driver.findElement(draftButtonLocator).click();
         return this;
     }
 }
