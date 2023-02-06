@@ -15,7 +15,11 @@ public class IncomingMessagesPage extends Base{
     private final By listMessagesLocator = By.xpath("//div[@class='llc__content']");
     private final By listLeftPanelLocator = By.xpath("//div[@class='nav__folder-name nav__folder-name_shared']");
     private final By draftButtonLocator = By.xpath("//div[text()='Черновики']");
-
+    private final By writeMessageLocator = By.xpath("//span[@class='compose-button__txt']");
+    private final By closeCalendarLocator = By.xpath("//*[@id=\"ph-whiteline\"]/div/div[1]/div[1]/div/a/div[3]/div");
+    private final By subjectMessageLocator = By.xpath("//input[@name='Subject']");
+    private final By saveButtonLocator = By.xpath("//span[text()='Сохранить']");
+    private final By closeWindowWriteMessageLocator = By.xpath("//button[@title='Закрыть']");
     public IncomingMessagesPage moveMessage(int numberMessage, int cellNumberLeftPanel){
         waitVisibility(listMessagesLocator);
         List<WebElement> list = driver.findElements(listMessagesLocator);
@@ -34,4 +38,38 @@ public class IncomingMessagesPage extends Base{
         driver.findElement(draftButtonLocator).click();
         return this;
     }
+    public IncomingMessagesPage closeCalendar(){
+        waitVisibility(writeMessageLocator);
+        driver.findElement(closeCalendarLocator).click();
+        return this;
+    }
+    public IncomingMessagesPage clickWriteLetterButton(){
+        waitVisibility(writeMessageLocator);
+        driver.findElement(writeMessageLocator).click();
+        return this;
+    }
+    public IncomingMessagesPage subjectMessage(String subject){
+        waitVisibility(subjectMessageLocator);
+        driver.findElement(subjectMessageLocator).sendKeys(subject);
+        return this;
+    }
+    public IncomingMessagesPage clickSaveButton(){
+        waitVisibility(saveButtonLocator);
+        driver.findElement(saveButtonLocator).click();
+        return this;
+    }
+    public IncomingMessagesPage closeWindowWriteLesson(){
+        waitVisibility(closeWindowWriteMessageLocator);
+        driver.findElement(closeWindowWriteMessageLocator).click();
+        return this;
+    }
+    public IncomingMessagesPage sendMessageToDraft(){
+        clickWriteLetterButton();
+        subjectMessage("Cat");
+        clickSaveButton();
+        closeWindowWriteLesson();
+        return this;
+    }
+
+
 }

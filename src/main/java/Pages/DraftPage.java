@@ -11,11 +11,20 @@ public class DraftPage extends Base{
         super(driver);
     }
     private final By listDraftsLocator = By.xpath("//div[@class='llc__background']");
+    private final By listSubjectLocator = By.xpath("//span[@class='ll-sj__normal']");
 
     public int numberOfMessageInDraft(){
         List<WebElement> list = driver.findElements(listDraftsLocator);
         int sizeDraft = list.size();
         return sizeDraft;
+
+    }
+    public String listSubject(int numberMessage){
+        waitVisibility(listSubjectLocator);
+        List<WebElement> list = driver.findElements(listSubjectLocator);
+        String a = list.get(numberMessage).getText();
+        return a;
+
 
     }
 
